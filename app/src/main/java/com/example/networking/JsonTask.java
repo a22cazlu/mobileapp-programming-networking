@@ -3,6 +3,8 @@ package com.example.networking;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +19,7 @@ public class JsonTask extends AsyncTask<String, String, String> {
     public interface JsonTaskListener {
         void onPostExecute(String json);
     }
-
+    private Mountain[] mountains;
     private HttpURLConnection connection = null;
     private BufferedReader reader = null;
     private final JsonTaskListener listener;
@@ -67,7 +69,13 @@ public class JsonTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String json) {
         listener.onPostExecute(json);
-        Log.d("TAG", json);
+        Gson gson = new Gson();
+        mountains = gson.fromJson(json,Mountain[].class);
+
+        for (int i = 0; i < mountains.length; i++){
+            Log.d("TAG", "Hittade ett berg: "+mountains[i]);
+        }
+
     }
 }
 

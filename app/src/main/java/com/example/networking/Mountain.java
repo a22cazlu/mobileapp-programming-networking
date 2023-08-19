@@ -8,7 +8,6 @@ import java.util.Arrays;
 @SuppressWarnings("WeakerAccess")
 public class Mountain {
 
-    private String title;
     private String ID;
     private String name;
     private String type;
@@ -17,13 +16,22 @@ public class Mountain {
     private String cost;
     private Auxdata auxdata;
 
-    public Mountain(String title) {
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    /*public Mountain(String title) {
         this.title = title;
     }
 
     public String getTitle() {
         return title;
-    }
+    }*/
 
 
 
