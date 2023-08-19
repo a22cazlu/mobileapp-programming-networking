@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private List<Mountain> items;
+    private List<Mountain> name;
     private LayoutInflater layoutInflater;
     private OnClickListener onClickListener;
 
-    RecyclerViewAdapter(Context context, List<Mountain> items, OnClickListener onClickListener) {
+    RecyclerViewAdapter(Context context, List<Mountain> name, OnClickListener onClickListener) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.items = items;
+        this.name = name;
         this.onClickListener = onClickListener;
     }
 
@@ -31,12 +31,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(items.get(position).getName());
+        holder.title.setText(name.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return name.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -50,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View view) {
-            onClickListener.onClick(items.get(getAdapterPosition()));
+            onClickListener.onClick(name.get(getAdapterPosition()));
         }
     }
 
