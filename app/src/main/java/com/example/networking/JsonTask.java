@@ -1,7 +1,9 @@
 package com.example.networking;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +33,7 @@ public class JsonTask extends AsyncTask<String, String, String> {
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
-            InputStream stream = connection.getInputStream();
+            InputStream stream = new BufferedInputStream(connection.getInputStream());
             reader = new BufferedReader(new InputStreamReader(stream));
 
             StringBuilder builder = new StringBuilder();
@@ -41,9 +43,11 @@ public class JsonTask extends AsyncTask<String, String, String> {
             }
             return builder.toString();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            /*e.printStackTrace();*/
+            Log.d("TAG", e.toString());
         } catch (IOException e) {
-            e.printStackTrace();
+            /*e.printStackTrace();*/
+            Log.d("TAG", e.toString());
         } finally {
             if (connection != null) {
                 connection.disconnect();
@@ -53,7 +57,8 @@ public class JsonTask extends AsyncTask<String, String, String> {
                     reader.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+               /* e.printStackTrace();*/
+                Log.d("TAG", e.toString());
             }
         }
         return null;
@@ -62,5 +67,7 @@ public class JsonTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String json) {
         listener.onPostExecute(json);
+        Log.d("TAG", json);
     }
 }
+
