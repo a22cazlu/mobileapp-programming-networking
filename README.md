@@ -31,4 +31,7 @@ I onPostExecute används Gson för att omvandla Json till ett objekt som vi seda
 Gson gson = new Gson();
 Mountain[] temp = gson.fromJson(json,Mountain[].class);
 ```
+**PS:**
+Jag har commitat fyra gånger men har missat att pushat dem till github:
 
+![](commit.png)
